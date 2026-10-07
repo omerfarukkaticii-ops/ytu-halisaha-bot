@@ -1,0 +1,17 @@
+services:
+  halisaha-bot:
+    build: .
+    container_name: halisaha_bot
+    environment:
+      - DOCKER_ENV=1
+      - OGRENCI_NO=${OGRENCI_NO}
+      - SIFRE=${SIFRE}
+      - HEDEF_GUN=${HEDEF_GUN:-Çarşamba}
+      - HEDEF_SAAT=${HEDEF_SAAT:-20.00 - 21.00}
+    env_file:
+      - .env
+    volumes:
+      - ./hedef.json:/app/hedef.json
+    # Chrome'un düzgün kapanması için
+    shm_size: '2gb'
+    restart: "no"
